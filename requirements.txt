@@ -1,0 +1,6 @@
+opencv-python-headless
+colorthief
+xarray-multiscale
+matplotlib
+scikit-image
+scikit-learn
