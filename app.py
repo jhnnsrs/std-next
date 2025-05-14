@@ -67,14 +67,32 @@ class TwoDSize:
 
 
 
-
-
-
-
-
 class Colormap(Enum):
     VIRIDIS = partial(cm.viridis)  # partial needed to make it register as an enum value
     PLASMA = partial(cm.plasma)
+
+
+@register(collections=["creatiom"])
+def create_random_image(width: int = 100, height: int = 100) -> Image:
+    """Create Random Image
+
+    Creates a random image with
+    
+    Args:
+        width (int): The width of the image
+        height (int): The height of the image
+    Returns:
+        Image: The Back
+    """
+    
+    data = np.random.rand(height, width)
+    data = xr.DataArray(data, dims=["y", "x"])
+
+    return from_array_like(
+        data,
+        name="Random Image",
+    )
+
 
 
 @register(collections=["quantitative"])
@@ -139,7 +157,7 @@ def measure_sum(
         rep (Image): The image
 
     Returns:
-        Representation: The Back
+        sum (float): The sum of all values
     """
     return float(rep.data.sum().compute())
 
@@ -157,7 +175,7 @@ def measure_fraction(
         rep (OmeroFiRepresentationFragmentle): The image.
 
     Returns:
-        Representation: The Back
+        fraction (float): The fraction of the image that is the value
     """
     x = rep.data == value
     sum = x.sum().compute()
@@ -172,7 +190,7 @@ def measure_basics(
 ) -> Tuple[float, float, float]:
     """Measure Basic Metrics
 
-    Measures basic meffffftrics of an image like max, mifffffn, mean
+    Measures basic metrics of an image like max, min, mean
 
     Args:
         rep (OmeroFiRepresentationFragmentle): The image

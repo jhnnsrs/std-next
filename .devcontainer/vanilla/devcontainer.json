@@ -1,7 +1,7 @@
 {
     "name": "std-next vanilla Devcontainer",
     "build": {
-        "dockerfile": "/home/jhnnsrs/Code/apps/std-next/.arkitekt_next/flavours/vanilla/Dockerfile",
+        "dockerfile": "../../.arkitekt_next/flavours/vanilla/Dockerfile",
         "context": "../.."
     },
     "runArgs": [
