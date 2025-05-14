@@ -1594,4 +1594,3194 @@ builds:
     - read
     version: 0.0.1
   selectors: []
-latest_build_run: 12fcc3d4-af2a-4196-9849-51d0740a2779
+- build_id: 007ae2e4-133e-4730-9480-3a670ace8651
+  build_run: 072d736f-8240-4845-9a38-8fa2f381cf6a
+  description: This is a vanilla flavour
+  flavour: vanilla
+  inspection:
+    implementations:
+    - definition:
+        args:
+        - default: 100
+          description: The width of the image
+          effects: []
+          key: width
+          kind: INT
+          label: width
+          nullable: true
+          validators: []
+        - default: 100
+          description: The height of the image
+          effects: []
+          key: height
+          kind: INT
+          label: height
+          nullable: true
+          validators: []
+        collections:
+        - creatiom
+        description: Creates a random image with
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Create Random Image
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: create_random_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        collections:
+        - quantitative
+        description: Measures the maxium value of an image
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Measure Max
+        portGroups: []
+        returns:
+        - description: The Back
+          effects: []
+          key: return0
+          kind: FLOAT
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: measure_max
+    - definition:
+        args:
+        - default: max
+          effects: []
+          key: name
+          kind: STRING
+          nullable: true
+          validators: []
+        collections:
+        - creation
+        description: Creates an era with the current time as a starttime
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Create Era Now
+        portGroups: []
+        returns:
+        - effects: []
+          identifier: mikro_next.api.schema.era
+          key: return0
+          kind: MEMORY_STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: create_era_func
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchDatasets($search: String, $values: [ID!], $pagination:\
+              \ OffsetPaginationInput) {\n  options: datasets(\n    filters: {search:\
+              \ $search, ids: $values}\n    pagination: $pagination\n  ) {\n    value:\
+              \ id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/dataset'
+          key: dataset
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        collections:
+        - collection
+        description: Iterate over all images in a dataset
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: GENERATOR
+        name: Iterate Images
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: iterate_images
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        collections:
+        - quantitative
+        description: Measures the sum of all values of an image
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Measure Sum
+        portGroups: []
+        returns:
+        - description: 'sum (float): The sum of all values'
+          effects: []
+          key: return0
+          kind: FLOAT
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: measure_sum
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        - default: 1
+          effects: []
+          key: value
+          kind: INT
+          nullable: true
+          validators: []
+        collections:
+        - quantitative
+        description: Measures the appearance of this value in the image (0-1)
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Measure Fraction
+        portGroups: []
+        returns:
+        - description: 'fraction (float): The fraction of the image that is the value'
+          effects: []
+          key: return0
+          kind: FLOAT
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: measure_fraction
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        collections:
+        - quantitative
+        description: Measures basic metrics of an image like max, min, mean
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Measure Basic Metrics
+        portGroups: []
+        returns:
+        - description: 'The max
+
+            float: The mean
+
+            float: The min'
+          effects: []
+          key: return0
+          kind: FLOAT
+          label: return0
+          nullable: false
+          validators: []
+        - effects: []
+          key: return1
+          kind: FLOAT
+          nullable: false
+          validators: []
+        - effects: []
+          key: return2
+          kind: FLOAT
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: measure_basics
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        - default: 1
+          effects: []
+          key: interval
+          kind: INT
+          nullable: true
+          validators: []
+        - default: frame
+          effects: []
+          key: key
+          kind: STRING
+          nullable: true
+          validators: []
+        collections:
+        - conversion
+        description: Converts a time series to a single frame
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: GENERATOR
+        name: T to Frame
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: t_to_frame
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        - default: 1
+          effects: []
+          key: interval
+          kind: INT
+          nullable: true
+          validators: []
+        - default: Slice
+          effects: []
+          key: key
+          kind: STRING
+          nullable: true
+          validators: []
+        collections:
+        - conversion
+        description: Creates a slice roi for each z slice
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: GENERATOR
+        name: Z to Slice
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: z_to_slice
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: roi
+          kind: STRUCTURE
+          label: roi
+          nullable: false
+          validators: []
+        collections:
+        - conversion
+        - cropping
+        description: Crops an Image based on a ROI
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Crop Image
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: crop_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - default: 2
+          effects: []
+          key: factor
+          kind: INT
+          nullable: true
+          validators: []
+        - default: 0
+          effects: []
+          key: depth
+          kind: INT
+          nullable: true
+          validators: []
+        - choices:
+          - label: MEAN
+            value: MEAN
+          - label: MAX
+            value: MAX
+          - label: MIN
+            value: MIN
+          - label: MEDIAN
+            value: MEDIAN
+          default: MEAN
+          effects: []
+          identifier: app.downscalemethod
+          key: method
+          kind: ENUM
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - scaling
+        description: Scales down the Representatoi by the factor of the provided
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Downscale
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: downscale_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - default: 2.0
+          effects: []
+          key: factor_x
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: 2.0
+          effects: []
+          key: factor_y
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: 2.0
+          effects: []
+          key: factor_z
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: 1.0
+          effects: []
+          key: factor_t
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: 1.0
+          effects: []
+          key: factor_c
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: true
+          effects: []
+          key: anti_alias
+          kind: BOOL
+          nullable: true
+          validators: []
+        - choices:
+          - label: MEAN
+            value: MEAN
+          - label: MAX
+            value: MAX
+          - label: MIN
+            value: MIN
+          - label: MEDIAN
+            value: MEDIAN
+          default: MEAN
+          effects: []
+          identifier: app.downscalemethod
+          key: method
+          kind: ENUM
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - scaling
+        description: Rescale the dimensions by the factors provided
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Rescale
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: rescale
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - effects: []
+          key: dim_x
+          kind: INT
+          nullable: true
+          validators: []
+        - effects: []
+          key: dim_y
+          kind: INT
+          nullable: true
+          validators: []
+        - effects: []
+          key: dim_z
+          kind: INT
+          nullable: true
+          validators: []
+        - effects: []
+          key: dim_t
+          kind: INT
+          nullable: true
+          validators: []
+        - effects: []
+          key: dim_c
+          kind: INT
+          nullable: true
+          validators: []
+        - default: true
+          effects: []
+          key: anti_alias
+          kind: BOOL
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - scaling
+        description: Resize the image to the dimensions provided
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Resize
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: resize
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - description: The physical size of the x dimension
+          effects: []
+          key: rescale_x
+          kind: FLOAT
+          label: rescale_x
+          nullable: true
+          validators: []
+        - description: The physical size of the y dimension
+          effects: []
+          key: rescale_y
+          kind: FLOAT
+          label: rescale_y
+          nullable: true
+          validators: []
+        - description: The physical size of the z dimension
+          effects: []
+          key: rescale_z
+          kind: FLOAT
+          label: rescale_z
+          nullable: true
+          validators: []
+        - description: The size of the x dimension
+          effects: []
+          key: ensure_dim_x
+          kind: INT
+          label: ensure_dim_x
+          nullable: true
+          validators: []
+        - description: The size of the y dimension
+          effects: []
+          key: ensure_dim_y
+          kind: INT
+          label: ensure_dim_y
+          nullable: true
+          validators: []
+        - description: The size of the z dimension
+          effects: []
+          key: ensure_dim_z
+          kind: INT
+          label: ensure_dim_z
+          nullable: true
+          validators: []
+        - choices:
+          - label: CENTER
+            value: CENTER
+          - label: TOP_LEFT
+            value: TOP_LEFT
+          - label: BOTTOM_RIGHT
+            value: BOTTOM_RIGHT
+          default: CENTER
+          effects: []
+          identifier: app.cropmethod
+          key: crop_method
+          kind: ENUM
+          label: crop_method
+          nullable: true
+          validators: []
+        - choices:
+          - label: PAD_ZEROS
+            value: PAD_ZEROS
+          default: PAD_ZEROS
+          effects: []
+          identifier: app.expandmethod
+          key: pad_method
+          kind: ENUM
+          label: pad_method
+          nullable: true
+          validators: []
+        - default: true
+          effects: []
+          key: anti_alias
+          kind: BOOL
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - scaling
+        description: 'Resize the image to match the physical size of the dimensions,
+
+          if the physical size is not provided, it will be assumed to be 1.
+
+
+          Additional dimensions will be cropped or padded according to the
+
+          crop_method and pad_method if the ensure_dim is provided'
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Resize to Physical
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: resize_to_physical
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - default: 0.5
+          effects: []
+          key: threshold
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - choices:
+          - label: MEAN
+            value: MEAN
+          - label: MAX
+            value: MAX
+          - label: MIN
+            value: MIN
+          default: MEAN
+          effects: []
+          identifier: app.thresholdmethod
+          key: method
+          kind: ENUM
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - thresholding
+        description: Binarizes the image based on a threshold
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Binarize
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: threshold_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        collections:
+        - processing
+        - projection
+        description: Projects the image onto the maximum intensity along the z axis
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Maximum Intensity Projection
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: maximum_intensity_projection
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - choices:
+          - label: NORM_INF
+            value: NORM_INF
+          - label: NORM_L1
+            value: NORM_L1
+          - label: NORM_L2
+            value: NORM_L2
+          - label: NORM_MINMAX
+            value: NORM_MINMAX
+          - label: NORM_RELATIVE
+            value: NORM_RELATIVE
+          - label: NORM_TYPE_MASK
+            value: NORM_TYPE_MASK
+          default: NORM_MINMAX
+          effects: []
+          identifier: app.cv2normtypes
+          key: normtype
+          kind: ENUM
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - thresholding
+        - adaptive
+        description: Binarizes the image based on a threshold
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Adaptive Binarize
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: adaptive_threshold_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - default: false
+          description: Whether to apply a gaussian blur before thresholding (kernel_size=5)
+          effects: []
+          key: gaussian_blur
+          kind: BOOL
+          label: gaussian_blur
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - thresholding
+        - adaptive
+        description: 'Binarizes the image based on a threshold, using Otsu''s method
+
+          with option to guassian blur the image before, images are normalized
+
+          for each x,y slice before thresholding.'
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Otsu Thresholding
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: otsu_thresholding
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: roi
+          kind: STRUCTURE
+          label: roi
+          nullable: false
+          validators: []
+        - default: true
+          description: Whether to walk the tree to find the origin
+          effects: []
+          key: walk
+          kind: BOOL
+          label: walk
+          nullable: true
+          validators: []
+        collections:
+        - conversion
+        description: Transforms a ROI into a Position on the governing stage
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Roi to Position
+        portGroups: []
+        returns:
+        - children:
+          - effects: []
+            key: x
+            kind: FLOAT
+            nullable: false
+            validators: []
+          - effects: []
+            key: y
+            kind: FLOAT
+            nullable: false
+            validators: []
+          - effects: []
+            key: z
+            kind: FLOAT
+            nullable: false
+            validators: []
+          description: The position
+          effects: []
+          identifier: position
+          key: return0
+          kind: MODEL
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: roi_to_position
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: roi
+          kind: STRUCTURE
+          label: roi
+          nullable: false
+          validators: []
+        collections:
+        - conversion
+        description: 'Measures the size of a Rectangular Roi in microns
+
+          (only works for Rectangular ROIS)'
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Rectangular Roi to Dimensions
+        portGroups: []
+        returns:
+        - children:
+          - effects: []
+            key: x
+            kind: FLOAT
+            nullable: false
+            validators: []
+          - effects: []
+            key: y
+            kind: FLOAT
+            nullable: false
+            validators: []
+          description: The height of the ROI in microns
+          effects: []
+          identifier: two_d_size
+          key: return0
+          kind: MODEL
+          label: height
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: roi_to_physical_dimensions
+    - definition:
+        args:
+        - children:
+          - assignWidget:
+              kind: SEARCH
+              query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+                \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+                \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+              ward: mikro
+            effects: []
+            identifier: '@mikro/roi'
+            key: '...'
+            kind: STRUCTURE
+            nullable: false
+            validators: []
+          effects: []
+          key: roi
+          kind: LIST
+          nullable: false
+          validators: []
+        collections:
+        - conversion
+        description: Transforms a List of Rois into a List of Positions on the governing
+          stage
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Rois to Positions
+        portGroups: []
+        returns:
+        - children:
+          - children:
+            - effects: []
+              key: x
+              kind: FLOAT
+              nullable: false
+              validators: []
+            - effects: []
+              key: y
+              kind: FLOAT
+              nullable: false
+              validators: []
+            - effects: []
+              key: z
+              kind: FLOAT
+              nullable: false
+              validators: []
+            description: 'Position(x: float, y: float, z: float)'
+            effects: []
+            identifier: position
+            key: '...'
+            kind: MODEL
+            nullable: false
+            validators: []
+          description: The Downscaled image
+          effects: []
+          key: return0
+          kind: LIST
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: rois_to_positions
+    - definition:
+        args:
+        - effects: []
+          key: name
+          kind: STRING
+          nullable: false
+          validators: []
+        collections:
+        - creation
+        description: Creates a new stage with the given name
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Create New Stage
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchStages($search: String, $values: [ID!], $pagination:\
+              \ OffsetPaginationInput) {\n  options: stages(\n    filters: {search:\
+              \ $search, ids: $values}\n    pagination: $pagination\n  ) {\n    value:\
+              \ id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/stage'
+          key: return0
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: create_stage_from_name
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchDatasets($search: String, $values: [ID!], $pagination:\
+              \ OffsetPaginationInput) {\n  options: datasets(\n    filters: {search:\
+              \ $search, ids: $values}\n    pagination: $pagination\n  ) {\n    value:\
+              \ id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/dataset'
+          key: dataset
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        collections:
+        - collection
+        description: Gets the files in an dataset at the time of the request
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Get all Omerfiles in Dataset
+        portGroups: []
+        returns:
+        - children:
+          - assignWidget:
+              kind: SEARCH
+              query: "query SearchFiles($search: String, $values: [ID!], $pagination:\
+                \ OffsetPaginationInput) {\n  options: files(\n    filters: {search:\
+                \ $search, ids: $values}\n    pagination: $pagination\n  ) {\n   \
+                \ value: id\n    label: name\n    __typename\n  }\n}"
+              ward: mikro
+            effects: []
+            identifier: '@mikro/file'
+            key: '...'
+            kind: STRUCTURE
+            nullable: false
+            validators: []
+          effects: []
+          key: return0
+          kind: LIST
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: get_files_ff
+    - definition:
+        args:
+        - choices:
+          - label: ASTRONAUT
+            value: ASTRONAUT
+          - label: BRAIN
+            value: BRAIN
+          - label: BRICK
+            value: BRICK
+          - label: CAMERA
+            value: CAMERA
+          - label: CAT
+            value: CAT
+          - label: CELL
+            value: CELL
+          - label: CELLS_3D
+            value: CELLS_3D
+          - label: CHECKERBOARD
+            value: CHECKERBOARD
+          - label: CHELSEA
+            value: CHELSEA
+          - label: CLOCK
+            value: CLOCK
+          - label: COFFEE
+            value: COFFEE
+          - label: COINS
+            value: COINS
+          - label: COLORWHEEL
+            value: COLORWHEEL
+          - label: EAGLE
+            value: EAGLE
+          - label: GRASS
+            value: GRASS
+          - label: GRAVEL
+            value: GRAVEL
+          - label: HORSE
+            value: HORSE
+          - label: HUBBLE_DEEP_FIELD
+            value: HUBBLE_DEEP_FIELD
+          - label: HUMAN_MITOSIS
+            value: HUMAN_MITOSIS
+          - label: IMMUNOHISTOCHEMISTRY
+            value: IMMUNOHISTOCHEMISTRY
+          - label: KIDNEY
+            value: KIDNEY
+          - label: LILY
+            value: LILY
+          - label: LOGO
+            value: LOGO
+          - label: MICROANEURYSMS
+            value: MICROANEURYSMS
+          - label: MOON
+            value: MOON
+          - label: NICKEL_SOLIDIFICATION
+            value: NICKEL_SOLIDIFICATION
+          - label: PAGE
+            value: PAGE
+          - label: PROTEIN_TRANSPORT
+            value: PROTEIN_TRANSPORT
+          - label: RETINA
+            value: RETINA
+          - label: ROCKET
+            value: ROCKET
+          - label: SHEPP_LOGAN_PHANTOM
+            value: SHEPP_LOGAN_PHANTOM
+          - label: SKIN
+            value: SKIN
+          - label: TEXT
+            value: TEXT
+          - label: VORTEX
+            value: VORTEX
+          effects: []
+          identifier: app.datakind
+          key: kind
+          kind: ENUM
+          nullable: false
+          validators: []
+        - default: true
+          effects: []
+          key: attach_meta
+          kind: BOOL
+          nullable: true
+          validators: []
+        collections:
+        - generator
+        description: Generate Test Image
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Generate Test Image
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: generate_test_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        - description: The distance between points in a cluster (eps in DBSCAN)
+          effects: []
+          key: distance
+          kind: FLOAT
+          label: distance
+          nullable: false
+          validators: []
+        - description: The minimum size of a cluster (min_samples in DBSCAN)
+          effects: []
+          key: min_size
+          kind: INT
+          label: min_size
+          nullable: false
+          validators: []
+        - description: The maximum size of a cluster (threshold for number of labels
+            in a cluster)
+          effects: []
+          key: max_size
+          kind: INT
+          label: max_size
+          nullable: true
+          validators: []
+        - default: 0
+          description: The channel to use. Defaults to 0.
+          effects: []
+          key: c
+          kind: INT
+          label: c
+          nullable: true
+          validators: []
+        - default: 0
+          description: The timepoint to use. Defaults to 0.
+          effects: []
+          key: t
+          kind: INT
+          label: t
+          nullable: true
+          validators: []
+        - default: 0
+          description: The z-slice to use. Defaults to 0.
+          effects: []
+          key: z
+          kind: INT
+          label: z
+          nullable: true
+          validators: []
+        - description: The maximum number of clusters to return. Defaults to None.
+          effects: []
+          key: limit
+          kind: INT
+          label: limit
+          nullable: true
+          validators: []
+        collections:
+        - segmentation
+        description: "Takes a masked image and marks rois based on dense clusters\
+          \ of a certain size \nand density of their center of mass"
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Mark Clusters
+        portGroups: []
+        returns:
+        - children:
+          - assignWidget:
+              kind: SEARCH
+              query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+                \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+                \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+              ward: mikro
+            effects: []
+            identifier: '@mikro/roi'
+            key: '...'
+            kind: STRUCTURE
+            nullable: false
+            validators: []
+          description: The rois for the clusters
+          effects: []
+          key: return0
+          kind: LIST
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: mark_clusters_of_size_rectangle
+    - definition:
+        args:
+        - children:
+          - assignWidget:
+              kind: SEARCH
+              query: "query SearchTables($search: String, $values: [ID!]) {\n  options:\
+                \ tables(\n    filters: {search: $search, ids: $values}\n    pagination:\
+                \ {limit: 10}\n  ) {\n    value: id\n    label: name\n    __typename\n\
+                \  }\n}"
+              ward: mikro
+            effects: []
+            identifier: '@mikro/table'
+            key: '...'
+            kind: STRUCTURE
+            nullable: false
+            validators: []
+          description: The tables to merge
+          effects: []
+          key: table
+          kind: LIST
+          label: table
+          nullable: false
+          validators: []
+        collections:
+        - organization
+        description: Merges a list of tables into a single table
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Merge Tables
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchTables($search: String, $values: [ID!]) {\n  options:\
+              \ tables(\n    filters: {search: $search, ids: $values}\n    pagination:\
+              \ {limit: 10}\n  ) {\n    value: id\n    label: name\n    __typename\n\
+              \  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/table'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: merge_tables
+    requirements:
+    - description: An instance of ArkitektNext Datalayer to make requests to the user's
+        data
+      key: datalayer
+      optional: true
+      service: live.arkitekt.s3
+    - description: An instance of ArkitektNext Lok to authenticate the user
+      key: lok
+      optional: false
+      service: live.arkitekt.lok
+    - description: An instance of ArkitektNext Mikro to make requests to the user's
+        data
+      key: mikro
+      optional: true
+      service: live.arkitekt.mikro
+    - description: An instance of ArkitektNext Rekuest to assign to actions
+      key: rekuest
+      optional: false
+      service: live.arkitekt.rekuest
+    size: 1169081477
+  manifest:
+    author: jhnnsrs
+    entrypoint: app
+    identifier: std-next
+    scopes:
+    - read
+    version: 0.0.1
+  selectors: []
+- build_id: 294bfa2a-683d-453c-b688-3f206dd7533a
+  build_run: eee6e433-7219-452c-9360-9c1ffee964ff
+  description: This is a vanilla flavour
+  flavour: vanilla
+  inspection:
+    implementations:
+    - definition:
+        args:
+        - default: 100
+          description: The width of the image
+          effects: []
+          key: width
+          kind: INT
+          label: width
+          nullable: true
+          validators: []
+        - default: 100
+          description: The height of the image
+          effects: []
+          key: height
+          kind: INT
+          label: height
+          nullable: true
+          validators: []
+        collections:
+        - creatiom
+        description: Creates a random image with
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Create Random Image
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: create_random_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        collections:
+        - quantitative
+        description: Measures the maxium value of an image
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Measure Max
+        portGroups: []
+        returns:
+        - description: The Back
+          effects: []
+          key: return0
+          kind: FLOAT
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: measure_max
+    - definition:
+        args:
+        - default: max
+          effects: []
+          key: name
+          kind: STRING
+          nullable: true
+          validators: []
+        collections:
+        - creation
+        description: Creates an era with the current time as a starttime
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Create Era Now
+        portGroups: []
+        returns:
+        - effects: []
+          identifier: mikro_next.api.schema.era
+          key: return0
+          kind: MEMORY_STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: create_era_func
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchDatasets($search: String, $values: [ID!], $pagination:\
+              \ OffsetPaginationInput) {\n  options: datasets(\n    filters: {search:\
+              \ $search, ids: $values}\n    pagination: $pagination\n  ) {\n    value:\
+              \ id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/dataset'
+          key: dataset
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        collections:
+        - collection
+        description: Iterate over all images in a dataset
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: GENERATOR
+        name: Iterate Images
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: iterate_images
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        collections:
+        - quantitative
+        description: Measures the sum of all values of an image
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Measure Sum
+        portGroups: []
+        returns:
+        - description: 'sum (float): The sum of all values'
+          effects: []
+          key: return0
+          kind: FLOAT
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: measure_sum
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        - default: 1
+          effects: []
+          key: value
+          kind: INT
+          nullable: true
+          validators: []
+        collections:
+        - quantitative
+        description: Measures the appearance of this value in the image (0-1)
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Measure Fraction
+        portGroups: []
+        returns:
+        - description: 'fraction (float): The fraction of the image that is the value'
+          effects: []
+          key: return0
+          kind: FLOAT
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: measure_fraction
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        collections:
+        - quantitative
+        description: Measures basic metrics of an image like max, min, mean
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Measure Basic Metrics
+        portGroups: []
+        returns:
+        - description: 'The max
+
+            float: The mean
+
+            float: The min'
+          effects: []
+          key: return0
+          kind: FLOAT
+          label: return0
+          nullable: false
+          validators: []
+        - effects: []
+          key: return1
+          kind: FLOAT
+          nullable: false
+          validators: []
+        - effects: []
+          key: return2
+          kind: FLOAT
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: measure_basics
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        - default: 1
+          effects: []
+          key: interval
+          kind: INT
+          nullable: true
+          validators: []
+        - default: frame
+          effects: []
+          key: key
+          kind: STRING
+          nullable: true
+          validators: []
+        collections:
+        - conversion
+        description: Converts a time series to a single frame
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: GENERATOR
+        name: T to Frame
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: t_to_frame
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        - default: 1
+          effects: []
+          key: interval
+          kind: INT
+          nullable: true
+          validators: []
+        - default: Slice
+          effects: []
+          key: key
+          kind: STRING
+          nullable: true
+          validators: []
+        collections:
+        - conversion
+        description: Creates a slice roi for each z slice
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: GENERATOR
+        name: Z to Slice
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: z_to_slice
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: roi
+          kind: STRUCTURE
+          label: roi
+          nullable: false
+          validators: []
+        collections:
+        - conversion
+        - cropping
+        description: Crops an Image based on a ROI
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Crop Image
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: crop_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - default: 2
+          effects: []
+          key: factor
+          kind: INT
+          nullable: true
+          validators: []
+        - default: 0
+          effects: []
+          key: depth
+          kind: INT
+          nullable: true
+          validators: []
+        - choices:
+          - label: MEAN
+            value: MEAN
+          - label: MAX
+            value: MAX
+          - label: MIN
+            value: MIN
+          - label: MEDIAN
+            value: MEDIAN
+          default: MEAN
+          effects: []
+          identifier: app.downscalemethod
+          key: method
+          kind: ENUM
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - scaling
+        description: Scales down the Representatoi by the factor of the provided
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Downscale
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: downscale_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - default: 2.0
+          effects: []
+          key: factor_x
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: 2.0
+          effects: []
+          key: factor_y
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: 2.0
+          effects: []
+          key: factor_z
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: 1.0
+          effects: []
+          key: factor_t
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: 1.0
+          effects: []
+          key: factor_c
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - default: true
+          effects: []
+          key: anti_alias
+          kind: BOOL
+          nullable: true
+          validators: []
+        - choices:
+          - label: MEAN
+            value: MEAN
+          - label: MAX
+            value: MAX
+          - label: MIN
+            value: MIN
+          - label: MEDIAN
+            value: MEDIAN
+          default: MEAN
+          effects: []
+          identifier: app.downscalemethod
+          key: method
+          kind: ENUM
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - scaling
+        description: Rescale the dimensions by the factors provided
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Rescale
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: rescale
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - effects: []
+          key: dim_x
+          kind: INT
+          nullable: true
+          validators: []
+        - effects: []
+          key: dim_y
+          kind: INT
+          nullable: true
+          validators: []
+        - effects: []
+          key: dim_z
+          kind: INT
+          nullable: true
+          validators: []
+        - effects: []
+          key: dim_t
+          kind: INT
+          nullable: true
+          validators: []
+        - effects: []
+          key: dim_c
+          kind: INT
+          nullable: true
+          validators: []
+        - default: true
+          effects: []
+          key: anti_alias
+          kind: BOOL
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - scaling
+        description: Resize the image to the dimensions provided
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Resize
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: resize
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - description: The physical size of the x dimension
+          effects: []
+          key: rescale_x
+          kind: FLOAT
+          label: rescale_x
+          nullable: true
+          validators: []
+        - description: The physical size of the y dimension
+          effects: []
+          key: rescale_y
+          kind: FLOAT
+          label: rescale_y
+          nullable: true
+          validators: []
+        - description: The physical size of the z dimension
+          effects: []
+          key: rescale_z
+          kind: FLOAT
+          label: rescale_z
+          nullable: true
+          validators: []
+        - description: The size of the x dimension
+          effects: []
+          key: ensure_dim_x
+          kind: INT
+          label: ensure_dim_x
+          nullable: true
+          validators: []
+        - description: The size of the y dimension
+          effects: []
+          key: ensure_dim_y
+          kind: INT
+          label: ensure_dim_y
+          nullable: true
+          validators: []
+        - description: The size of the z dimension
+          effects: []
+          key: ensure_dim_z
+          kind: INT
+          label: ensure_dim_z
+          nullable: true
+          validators: []
+        - choices:
+          - label: CENTER
+            value: CENTER
+          - label: TOP_LEFT
+            value: TOP_LEFT
+          - label: BOTTOM_RIGHT
+            value: BOTTOM_RIGHT
+          default: CENTER
+          effects: []
+          identifier: app.cropmethod
+          key: crop_method
+          kind: ENUM
+          label: crop_method
+          nullable: true
+          validators: []
+        - choices:
+          - label: PAD_ZEROS
+            value: PAD_ZEROS
+          default: PAD_ZEROS
+          effects: []
+          identifier: app.expandmethod
+          key: pad_method
+          kind: ENUM
+          label: pad_method
+          nullable: true
+          validators: []
+        - default: true
+          effects: []
+          key: anti_alias
+          kind: BOOL
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - scaling
+        description: 'Resize the image to match the physical size of the dimensions,
+
+          if the physical size is not provided, it will be assumed to be 1.
+
+
+          Additional dimensions will be cropped or padded according to the
+
+          crop_method and pad_method if the ensure_dim is provided'
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Resize to Physical
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: resize_to_physical
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - default: 0.5
+          effects: []
+          key: threshold
+          kind: FLOAT
+          nullable: true
+          validators: []
+        - choices:
+          - label: MEAN
+            value: MEAN
+          - label: MAX
+            value: MAX
+          - label: MIN
+            value: MIN
+          default: MEAN
+          effects: []
+          identifier: app.thresholdmethod
+          key: method
+          kind: ENUM
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - thresholding
+        description: Binarizes the image based on a threshold
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Binarize
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: threshold_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        collections:
+        - processing
+        - projection
+        description: Projects the image onto the maximum intensity along the z axis
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Maximum Intensity Projection
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: maximum_intensity_projection
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - choices:
+          - label: NORM_INF
+            value: NORM_INF
+          - label: NORM_L1
+            value: NORM_L1
+          - label: NORM_L2
+            value: NORM_L2
+          - label: NORM_MINMAX
+            value: NORM_MINMAX
+          - label: NORM_RELATIVE
+            value: NORM_RELATIVE
+          - label: NORM_TYPE_MASK
+            value: NORM_TYPE_MASK
+          default: NORM_MINMAX
+          effects: []
+          identifier: app.cv2normtypes
+          key: normtype
+          kind: ENUM
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - thresholding
+        - adaptive
+        description: Binarizes the image based on a threshold
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Adaptive Binarize
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: adaptive_threshold_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        - default: false
+          description: Whether to apply a gaussian blur before thresholding (kernel_size=5)
+          effects: []
+          key: gaussian_blur
+          kind: BOOL
+          label: gaussian_blur
+          nullable: true
+          validators: []
+        collections:
+        - processing
+        - thresholding
+        - adaptive
+        description: 'Binarizes the image based on a threshold, using Otsu''s method
+
+          with option to guassian blur the image before, images are normalized
+
+          for each x,y slice before thresholding.'
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Otsu Thresholding
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: otsu_thresholding
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: roi
+          kind: STRUCTURE
+          label: roi
+          nullable: false
+          validators: []
+        - default: true
+          description: Whether to walk the tree to find the origin
+          effects: []
+          key: walk
+          kind: BOOL
+          label: walk
+          nullable: true
+          validators: []
+        collections:
+        - conversion
+        description: Transforms a ROI into a Position on the governing stage
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Roi to Position
+        portGroups: []
+        returns:
+        - children:
+          - effects: []
+            key: x
+            kind: FLOAT
+            nullable: false
+            validators: []
+          - effects: []
+            key: y
+            kind: FLOAT
+            nullable: false
+            validators: []
+          - effects: []
+            key: z
+            kind: FLOAT
+            nullable: false
+            validators: []
+          description: The position
+          effects: []
+          identifier: position
+          key: return0
+          kind: MODEL
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: roi_to_position
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+              \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+              \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/roi'
+          key: roi
+          kind: STRUCTURE
+          label: roi
+          nullable: false
+          validators: []
+        collections:
+        - conversion
+        description: 'Measures the size of a Rectangular Roi in microns
+
+          (only works for Rectangular ROIS)'
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Rectangular Roi to Dimensions
+        portGroups: []
+        returns:
+        - children:
+          - effects: []
+            key: x
+            kind: FLOAT
+            nullable: false
+            validators: []
+          - effects: []
+            key: y
+            kind: FLOAT
+            nullable: false
+            validators: []
+          description: The height of the ROI in microns
+          effects: []
+          identifier: two_d_size
+          key: return0
+          kind: MODEL
+          label: height
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: roi_to_physical_dimensions
+    - definition:
+        args:
+        - children:
+          - assignWidget:
+              kind: SEARCH
+              query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+                \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+                \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+              ward: mikro
+            effects: []
+            identifier: '@mikro/roi'
+            key: '...'
+            kind: STRUCTURE
+            nullable: false
+            validators: []
+          effects: []
+          key: roi
+          kind: LIST
+          nullable: false
+          validators: []
+        collections:
+        - conversion
+        description: Transforms a List of Rois into a List of Positions on the governing
+          stage
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Rois to Positions
+        portGroups: []
+        returns:
+        - children:
+          - children:
+            - effects: []
+              key: x
+              kind: FLOAT
+              nullable: false
+              validators: []
+            - effects: []
+              key: y
+              kind: FLOAT
+              nullable: false
+              validators: []
+            - effects: []
+              key: z
+              kind: FLOAT
+              nullable: false
+              validators: []
+            description: 'Position(x: float, y: float, z: float)'
+            effects: []
+            identifier: position
+            key: '...'
+            kind: MODEL
+            nullable: false
+            validators: []
+          description: The Downscaled image
+          effects: []
+          key: return0
+          kind: LIST
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: rois_to_positions
+    - definition:
+        args:
+        - effects: []
+          key: name
+          kind: STRING
+          nullable: false
+          validators: []
+        collections:
+        - creation
+        description: Creates a new stage with the given name
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Create New Stage
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchStages($search: String, $values: [ID!], $pagination:\
+              \ OffsetPaginationInput) {\n  options: stages(\n    filters: {search:\
+              \ $search, ids: $values}\n    pagination: $pagination\n  ) {\n    value:\
+              \ id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/stage'
+          key: return0
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: create_stage_from_name
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchDatasets($search: String, $values: [ID!], $pagination:\
+              \ OffsetPaginationInput) {\n  options: datasets(\n    filters: {search:\
+              \ $search, ids: $values}\n    pagination: $pagination\n  ) {\n    value:\
+              \ id\n    label: name\n    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/dataset'
+          key: dataset
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        collections:
+        - collection
+        description: Gets the files in an dataset at the time of the request
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Get all Omerfiles in Dataset
+        portGroups: []
+        returns:
+        - children:
+          - assignWidget:
+              kind: SEARCH
+              query: "query SearchFiles($search: String, $values: [ID!], $pagination:\
+                \ OffsetPaginationInput) {\n  options: files(\n    filters: {search:\
+                \ $search, ids: $values}\n    pagination: $pagination\n  ) {\n   \
+                \ value: id\n    label: name\n    __typename\n  }\n}"
+              ward: mikro
+            effects: []
+            identifier: '@mikro/file'
+            key: '...'
+            kind: STRUCTURE
+            nullable: false
+            validators: []
+          effects: []
+          key: return0
+          kind: LIST
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: get_files_ff
+    - definition:
+        args:
+        - choices:
+          - label: ASTRONAUT
+            value: ASTRONAUT
+          - label: BRAIN
+            value: BRAIN
+          - label: BRICK
+            value: BRICK
+          - label: CAMERA
+            value: CAMERA
+          - label: CAT
+            value: CAT
+          - label: CELL
+            value: CELL
+          - label: CELLS_3D
+            value: CELLS_3D
+          - label: CHECKERBOARD
+            value: CHECKERBOARD
+          - label: CHELSEA
+            value: CHELSEA
+          - label: CLOCK
+            value: CLOCK
+          - label: COFFEE
+            value: COFFEE
+          - label: COINS
+            value: COINS
+          - label: COLORWHEEL
+            value: COLORWHEEL
+          - label: EAGLE
+            value: EAGLE
+          - label: GRASS
+            value: GRASS
+          - label: GRAVEL
+            value: GRAVEL
+          - label: HORSE
+            value: HORSE
+          - label: HUBBLE_DEEP_FIELD
+            value: HUBBLE_DEEP_FIELD
+          - label: HUMAN_MITOSIS
+            value: HUMAN_MITOSIS
+          - label: IMMUNOHISTOCHEMISTRY
+            value: IMMUNOHISTOCHEMISTRY
+          - label: KIDNEY
+            value: KIDNEY
+          - label: LILY
+            value: LILY
+          - label: LOGO
+            value: LOGO
+          - label: MICROANEURYSMS
+            value: MICROANEURYSMS
+          - label: MOON
+            value: MOON
+          - label: NICKEL_SOLIDIFICATION
+            value: NICKEL_SOLIDIFICATION
+          - label: PAGE
+            value: PAGE
+          - label: PROTEIN_TRANSPORT
+            value: PROTEIN_TRANSPORT
+          - label: RETINA
+            value: RETINA
+          - label: ROCKET
+            value: ROCKET
+          - label: SHEPP_LOGAN_PHANTOM
+            value: SHEPP_LOGAN_PHANTOM
+          - label: SKIN
+            value: SKIN
+          - label: TEXT
+            value: TEXT
+          - label: VORTEX
+            value: VORTEX
+          effects: []
+          identifier: app.datakind
+          key: kind
+          kind: ENUM
+          nullable: false
+          validators: []
+        - default: true
+          effects: []
+          key: attach_meta
+          kind: BOOL
+          nullable: true
+          validators: []
+        collections:
+        - generator
+        description: Generate Test Image
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Generate Test Image
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: return0
+          kind: STRUCTURE
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: generate_test_image
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \    __typename\n  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/image'
+          key: rep
+          kind: STRUCTURE
+          label: rep
+          nullable: false
+          validators: []
+        - description: The distance between points in a cluster (eps in DBSCAN)
+          effects: []
+          key: distance
+          kind: FLOAT
+          label: distance
+          nullable: false
+          validators: []
+        - description: The minimum size of a cluster (min_samples in DBSCAN)
+          effects: []
+          key: min_size
+          kind: INT
+          label: min_size
+          nullable: false
+          validators: []
+        - description: The maximum size of a cluster (threshold for number of labels
+            in a cluster)
+          effects: []
+          key: max_size
+          kind: INT
+          label: max_size
+          nullable: true
+          validators: []
+        - default: 0
+          description: The channel to use. Defaults to 0.
+          effects: []
+          key: c
+          kind: INT
+          label: c
+          nullable: true
+          validators: []
+        - default: 0
+          description: The timepoint to use. Defaults to 0.
+          effects: []
+          key: t
+          kind: INT
+          label: t
+          nullable: true
+          validators: []
+        - default: 0
+          description: The z-slice to use. Defaults to 0.
+          effects: []
+          key: z
+          kind: INT
+          label: z
+          nullable: true
+          validators: []
+        - description: The maximum number of clusters to return. Defaults to None.
+          effects: []
+          key: limit
+          kind: INT
+          label: limit
+          nullable: true
+          validators: []
+        collections:
+        - segmentation
+        description: "Takes a masked image and marks rois based on dense clusters\
+          \ of a certain size \nand density of their center of mass"
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Mark Clusters
+        portGroups: []
+        returns:
+        - children:
+          - assignWidget:
+              kind: SEARCH
+              query: "query SearchRois($search: String, $values: [ID!]) {\n  options:\
+                \ rois(filters: {search: $search, ids: $values}, pagination: {limit:\
+                \ 10}) {\n    value: id\n    label: name\n    __typename\n  }\n}"
+              ward: mikro
+            effects: []
+            identifier: '@mikro/roi'
+            key: '...'
+            kind: STRUCTURE
+            nullable: false
+            validators: []
+          description: The rois for the clusters
+          effects: []
+          key: return0
+          kind: LIST
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: mark_clusters_of_size_rectangle
+    - definition:
+        args:
+        - children:
+          - assignWidget:
+              kind: SEARCH
+              query: "query SearchTables($search: String, $values: [ID!]) {\n  options:\
+                \ tables(\n    filters: {search: $search, ids: $values}\n    pagination:\
+                \ {limit: 10}\n  ) {\n    value: id\n    label: name\n    __typename\n\
+                \  }\n}"
+              ward: mikro
+            effects: []
+            identifier: '@mikro/table'
+            key: '...'
+            kind: STRUCTURE
+            nullable: false
+            validators: []
+          description: The tables to merge
+          effects: []
+          key: table
+          kind: LIST
+          label: table
+          nullable: false
+          validators: []
+        collections:
+        - organization
+        description: Merges a list of tables into a single table
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Merge Tables
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchTables($search: String, $values: [ID!]) {\n  options:\
+              \ tables(\n    filters: {search: $search, ids: $values}\n    pagination:\
+              \ {limit: 10}\n  ) {\n    value: id\n    label: name\n    __typename\n\
+              \  }\n}"
+            ward: mikro
+          effects: []
+          identifier: '@mikro/table'
+          key: return0
+          kind: STRUCTURE
+          label: return0
+          nullable: false
+          validators: []
+        stateful: false
+      dependencies: []
+      dynamic: false
+      interface: merge_tables
+    requirements:
+    - description: An instance of ArkitektNext Datalayer to make requests to the user's
+        data
+      key: datalayer
+      optional: true
+      service: live.arkitekt.s3
+    - description: An instance of ArkitektNext Lok to authenticate the user
+      key: lok
+      optional: false
+      service: live.arkitekt.lok
+    - description: An instance of ArkitektNext Mikro to make requests to the user's
+        data
+      key: mikro
+      optional: true
+      service: live.arkitekt.mikro
+    - description: An instance of ArkitektNext Rekuest to assign to actions
+      key: rekuest
+      optional: false
+      service: live.arkitekt.rekuest
+    size: 1169130304
+  manifest:
+    author: jhnnsrs
+    entrypoint: app
+    identifier: std-next
+    scopes:
+    - read
+    version: 0.0.2
+  selectors: []
+latest_build_run: eee6e433-7219-452c-9360-9c1ffee964ff
