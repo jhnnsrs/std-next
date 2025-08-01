@@ -4,3 +4,4 @@ xarray-multiscale
 matplotlib
 scikit-image
 scikit-learn
+pooch

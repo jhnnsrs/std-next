@@ -72,7 +72,7 @@ class Colormap(Enum):
     PLASMA = partial(cm.plasma)
 
 
-@register(collections=["creatiom"])
+@register(collections=["creation"])
 def create_random_image(width: int = 100, height: int = 100) -> Image:
     """Create Random Image
 
@@ -227,11 +227,9 @@ def t_to_frame(
     for i in range(rep.data.sizes["t"]):
         if i % interval == 0:
             yield create_roi(
-                representation=rep,
-                label=f"{key} {i}",
-                type=RoiKind.FRAME,
-                tags=[f"t{i}", "frame"],
+                image=rep,
                 vectors=[FiveDVector(t=i), FiveDVector(t=i + interval)],
+                kind=RoiKind.FRAME,
             )
 
 
@@ -257,11 +255,9 @@ def z_to_slice(
     for i in range(rep.data.sizes["z"]):
         if i % interval == 0:
             yield create_roi(
-                representation=rep,
-                label=f"{key} {i}",
-                type=RoiKind.SLICE,
-                tags=[f"z{i}", "frame"],
+                image=rep,
                 vectors=[FiveDVector(z=i), FiveDVector(z=i + interval)],
+                kind=RoiKind.SLICE,
             )
 
 
@@ -286,27 +282,17 @@ def crop_image(
     Returns:
         Representation: The Back
     """
-    if rep is None:
-        rep = get_image(roi.representation.id)
+    rep = get_image(roi.image.id)
 
     array = rep.data
-    if roi.type == RoiKind.RECTANGLE:
-        x_start = roi.vectors[0].x
-        y_start = roi.vectors[0].y
-        x_end = roi.vectors[0].x
-        y_end = roi.vectors[0].y
+    if roi.kind == RoiKind.RECTANGLE:
+        vectors = roi.get_vector_data("yx")
+        
+        x_start = min([v[0] for v in vectors])
+        x_end = max([v[0] for v in vectors])
+        y_start = min([v[1] for v in vectors])
+        y_end = max([v[1] for v in vectors])
 
-        for vector in roi.vectors:
-            if vector.x < x_start:
-                x_start = vector.x
-            if vector.x > x_end:
-                x_end = vector.x
-            if vector.y < y_start:
-                y_start = vector.y
-            if vector.y > y_end:
-                y_end = vector.y
-
-        roi.vectors[0]
 
         array = array.sel(
             x=slice(math.floor(x_start), math.floor(x_end)),
@@ -319,7 +305,7 @@ def crop_image(
             roi_views=[PartialROIViewInput(roi=roi)],
         )
 
-    if roi.type == RoiKind.FRAME:
+    if roi.kind == RoiKind.FRAME:
         array = array.sel(
             t=slice(math.floor(roi.vectors[0].t), math.floor(roi.vectors[1].t))
         )
@@ -330,7 +316,7 @@ def crop_image(
             roi_views=[PartialROIViewInput(roi=roi)],
         )
 
-    if roi.type == RoiKind.SLICE:
+    if roi.kind == RoiKind.SLICE:
         array = array.sel(
             z=slice(math.floor(roi.vectors[0].z), math.floor(roi.vectors[1].z))
         )
@@ -341,7 +327,7 @@ def crop_image(
             roi_views=[PartialROIViewInput(roi=roi)],
         )
 
-    raise Exception(f"Roi Type {roi.type} not supported")
+    raise Exception(f"Roi Kind {roi.kind} not supported")
 
 
 class DownScaleMethod(Enum):
@@ -572,7 +558,7 @@ def resize_to_physical(
     return from_array_like(
         new_array,
         name="Scaled " + image.name,
-        roi_views=[PartialScaleViewInput(scaleX=scale_map["x"], scaleY=scale_map["y"], scaleZ=scale_map["z"])],
+        scale_views=[PartialScaleViewInput(scaleX=scale_map["x"], scaleY=scale_map["y"], scaleZ=scale_map["z"])],
     )
 
 
@@ -599,11 +585,11 @@ def threshold_image(
         RepresentationFragment: The Downscaled image
     """
     print(method)
-    if method == ThresholdMethod.MEAN.value:
+    if method == ThresholdMethod.MEAN:
         m = image.data.mean()
-    if method == ThresholdMethod.MAX.value:
+    if method == ThresholdMethod.MAX:
         m = image.data.max()
-    if method == ThresholdMethod.MIN.value:
+    if method == ThresholdMethod.MIN:
         m = image.data.min()
 
     newrep = image.data > threshold * m
@@ -691,15 +677,6 @@ def adaptive_threshold_image(
     )
 
 
-class CV2NormTypes(Enum):
-    NORM_INF = cv2.NORM_INF
-    NORM_L1 = cv2.NORM_L1
-    NORM_L2 = cv2.NORM_L2
-    NORM_MINMAX = cv2.NORM_MINMAX
-    NORM_RELATIVE = cv2.NORM_RELATIVE
-    NORM_TYPE_MASK = cv2.NORM_TYPE_MASK
-
-
 @register(collections=["processing", "thresholding", "adaptive"])
 def otsu_thresholding(
     image: Image,
@@ -770,6 +747,9 @@ def roi_to_position(
     """Roi to Position
 
     Transforms a ROI into a Position on the governing stage
+    
+    NOTE: This function is currently disabled due to API changes.
+    The omero.positions attribute is no longer available in the new mikro_next API.
 
     Args:
         roi (ROI): Walk the tree to find the origin
@@ -778,48 +758,50 @@ def roi_to_position(
     Returns:
         Position: The position
     """
+    
+    raise NotImplementedError("This function is temporarily disabled due to API changes. The omero.positions attribute is no longer available.")
 
-    smart_image = get_image(roi.image)
+    # smart_image = get_image(roi.image)
 
-    while smart_image.omero is None or smart_image.omero.positions is None:
-        smart_image = get_image(smart_image.origins[0])
-        assert (
-            smart_image.shape == roi.representation.shape
-        ), "Could not find a matching position is not in the same space as the original (probably through a downsampling, or cropping)"
+    # while smart_image.omero is None or smart_image.omero.positions is None:
+    #     smart_image = get_image(smart_image.origins[0])
+    #     assert (
+    #         smart_image.shape == roi.image.shape
+    #     ), "Could not find a matching position is not in the same space as the original (probably through a downsampling, or cropping)"
 
-    omero = smart_image.omero
-    affine_transformation = omero.affine_transformation
-    shape = smart_image.shape
-    position = smart_image.omero.positions[0]
+    # omero = smart_image.omero
+    # affine_transformation = omero.affine_transformation
+    # shape = smart_image.shape
+    # position = smart_image.omero.positions[0]
 
-    # calculate offset between center of roi and center of image
-    print(position)
-    print(roi.get_vector_data(dims="ctzyx"))
-    center = roi.center_as_array()
-    print(center)
+    # # calculate offset between center of roi and center of image
+    # print(position)
+    # print(roi.get_vector_data(dims="ctzyx"))
+    # center = roi.center_as_array()
+    # print(center)
 
-    image_center = np.array(shape) / 2
-    print(image_center[2:])
-    print(center[2:])
-    offsetz, offsety, offsetx = image_center[2:]
-    z, y, x = center[2:]
+    # image_center = np.array(shape) / 2
+    # print(image_center[2:])
+    # print(center[2:])
+    # offsetz, offsety, offsetx = image_center[2:]
+    # z, y, x = center[2:]
 
-    x_from_center = x - offsetx
-    y_from_center = y - offsety
-    z_from_center = z - offsetz
+    # x_from_center = x - offsetx
+    # y_from_center = y - offsety
+    # z_from_center = z - offsetz
 
-    # TODO: check if this is correct and extend to 3d
-    vec_center = np.array([x_from_center, y_from_center, z_from_center])
-    vec = np.matmul(np.array(affine_transformation).reshape((3, 3)), vec_center)
-    new_pos_x, new_pos_y, new_pos_z = (
-        np.array([position.x, position.y, position.z]) + vec
-    )
+    # # TODO: check if this is correct and extend to 3d
+    # vec_center = np.array([x_from_center, y_from_center, z_from_center])
+    # vec = np.matmul(np.array(affine_transformation).reshape((3, 3)), vec_center)
+    # new_pos_x, new_pos_y, new_pos_z = (
+    #     np.array([position.x, position.y, position.z]) + vec
+    # )
 
-    print(vec)
+    # print(vec)
 
-    print("Affine", affine_transformation)
+    # print("Affine", affine_transformation)
 
-    return Position(x=new_pos_x, y=new_pos_y, z=new_pos_z)
+    # return Position(x=new_pos_x, y=new_pos_y, z=new_pos_z)
 
 
 @register(collections=["conversion"])
@@ -830,6 +812,9 @@ def roi_to_physical_dimensions(
 
     Measures the size of a Rectangular Roi in microns
     (only works for Rectangular ROIS)
+    
+    NOTE: This function is currently disabled due to API changes.
+    The omero.physical_size attribute is no longer available in the new mikro_next API.
 
     Parameters
     ----------
@@ -843,29 +828,32 @@ def roi_to_physical_dimensions(
     width: float
         The width of the ROI in microns
     """
-    assert roi.type == RoiKind.RECTANGLE, "Only works for rectangular ROIs"
-    smart_image = get_image(roi.image)
+    
+    raise NotImplementedError("This function is temporarily disabled due to API changes. The omero.physical_size attribute is no longer available.")
 
-    while smart_image.omero is None or smart_image.omero.physical_size is None:
-        smart_image = get_image(smart_image.origins[0])
-        assert (
-            smart_image.shape == roi.representation.shape
-        ), "Could not find a matching position is not in the same space as the original (probably through a downsampling, or cropping)"
+    # assert roi.type == RoiKind.RECTANGLE, "Only works for rectangular ROIs"
+    # smart_image = get_image(roi.image)
 
-    physical_size = smart_image.omero.physical_size
+    # while smart_image.omero is None or smart_image.omero.physical_size is None:
+    #     smart_image = get_image(smart_image.origins[0])
+    #     assert (
+    #         smart_image.shape == roi.image.shape
+    #     ), "Could not find a matching position is not in the same space as the original (probably through a downsampling, or cropping)"
 
-    # Convert to a numpy array for easier manipulation
-    points = roi.get_vector_data(dims="yx")
+    # physical_size = smart_image.omero.physical_size
 
-    # Find the minimum and maximum x and y coordinates
-    min_y, min_x = np.min(points, axis=0)
-    max_y, max_x = np.max(points, axis=0)
+    # # Convert to a numpy array for easier manipulation
+    # points = roi.get_vector_data(dims="yx")
 
-    # Calculate the width and height
-    width = max_x - min_x
-    height = max_y - min_y
+    # # Find the minimum and maximum x and y coordinates
+    # min_y, min_x = np.min(points, axis=0)
+    # max_y, max_x = np.max(points, axis=0)
 
-    return TwoDSize(x=width * physical_size.x, y=height * physical_size.y)
+    # # Calculate the width and height
+    # width = max_x - min_x
+    # height = max_y - min_y
+
+    # return TwoDSize(x=width * physical_size.x, y=height * physical_size.y)
 
 
 @register(collections=["conversion"])
@@ -907,13 +895,17 @@ def create_stage_from_name(
 def get_files_ff(
     dataset: Dataset,
 ) -> List[File]:
-    """Get all Omerfiles in Dataset
+    """Get all Files in Dataset
 
-    Gets the files in an dataset at the time of the request
+    Gets the files in a dataset at the time of the request
+    
+    NOTE: This function is currently disabled due to API changes.
+    The dataset.omerofiles attribute is no longer available in the new mikro_next API.
     """
-    print(dataset)
-
-    return [file for file in dataset.omerofiles if file is not None]
+    
+    raise NotImplementedError("This function is temporarily disabled due to API changes. The dataset.omerofiles attribute is no longer available.")
+    
+    # return [file for file in dataset.omerofiles if file is not None]
 
 
 class DataKind(Enum):
@@ -1127,8 +1119,7 @@ def mark_clusters_of_size_rectangle(
                 FiveDVector(x=x2, y=y2, z=z, t=t, c=c),
                 FiveDVector(x=x1, y=y2, z=z, t=t, c=c),
             ],
-            type=RoiKind.RECTANGLE,
-            label="size: {}".format(len(centrois)),
+            kind=RoiKind.RECTANGLE,
         )
         rois.append(roi)
 
