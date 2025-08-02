@@ -23,7 +23,7 @@ from mikro_next.api.schema import (
     ImageFilter,
     Table,
     from_parquet_like,
-    Snapshot,
+    RGBView,
     File,
     RoiKind,
     Dataset,
@@ -38,6 +38,9 @@ from mikro_next.api.schema import (
     Stage,
     get_image,
 )
+from arkitekt_next import easy, register, progress
+from mikro_next.api.schema import RGBView, update_rgb_view, get_image
+import numpy as np
 import operator
 from arkitekt_next import register, log, model
 from functools import partial
@@ -71,6 +74,59 @@ class Colormap(Enum):
     VIRIDIS = partial(cm.viridis)  # partial needed to make it register as an enum value
     PLASMA = partial(cm.plasma)
 
+
+@register(collections=["rescale"])
+def rescale_channel(rgb_view: RGBView) -> RGBView:
+    """Normalize 
+    
+    Normalizes the RGB channels of an RGBView to improve contrast.
+    Contrast limits are the minimum and maximum values of the image data.
+
+    Args:
+        rgb_view (RGBView): The RGB view to rescale.
+
+    Returns:
+        RGBView: The rescaled RGB view.
+    """
+
+    image = get_image(rgb_view.image.id)
+
+    return update_rgb_view(
+        rgb_view,
+        contrast_limit_min=image.data.min(),
+        contrast_limit_max=image.data.max(),
+        gamma=1.0,
+    )
+
+
+@register(collections=["rescale"])
+def rescale_channel_perceptually(rgb_view: RGBView) -> RGBView:
+    """Rescale Perceptually
+    
+    Rescales the RGB channels of an RGBView using percentile-based limits
+    and a perceptually helpful gamma value.
+
+    Args:
+        rgb_view (RGBView): The RGB view to rescale.
+
+    Returns:
+        RGBView: The rescaled RGB view.
+    """
+    image = get_image(rgb_view.image.id)
+    data = image.data
+
+    # Percentile-based limits
+    vmin, vmax = np.percentile(data, (2, 98))
+
+    # Use a perceptually helpful gamma
+    gamma = 0.8
+
+    return update_rgb_view(
+        rgb_view,
+        contrast_limit_min=float(vmin),
+        contrast_limit_max=float(vmax),
+        gamma=gamma,
+    )
 
 @register(collections=["creation"])
 def create_random_image(width: int = 100, height: int = 100) -> Image:
